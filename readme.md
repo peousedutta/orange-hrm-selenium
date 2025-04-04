@@ -1,2 +1,2 @@
 # Site details 
-https://www.orangehrm.com/
+https://opensource-demo.orangehrmlive.com/web/index.php/auth/login
