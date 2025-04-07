@@ -2,9 +2,10 @@ import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 
-def browerInstance():
+@pytest.fixture(scope='function')
+def browserInstance():
     serviceObj = Service()
     driver = webdriver.Chrome(service=serviceObj)
     driver.implicitly_wait(4)
-    yield
+    yield driver
     driver.close()
