@@ -3,7 +3,7 @@ from utilities.ReadProperties import ReadConfig
 import pytest
 
 class Test_001_login:
-    URL = ReadConfig.GetAplicationUrl()
+    URL = ReadConfig.GetApplicationURL()
 
     def test_pageTitle(self):
         pass
