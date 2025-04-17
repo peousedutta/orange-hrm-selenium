@@ -1,7 +1,9 @@
 from selenium.webdriver.common.by import By
+from utilities.utils import BrowserUtils
 
-class LoginPage:
+class LoginPage(BrowserUtils):
     def __init__(self, driver):
+        super().__init__(driver)
         self.driver = driver
         try:
             self.userName = (By.XPATH, "//input[@name='username']")
