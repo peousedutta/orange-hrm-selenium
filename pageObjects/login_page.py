@@ -6,19 +6,19 @@ class LoginPage(BrowserUtils):
         super().__init__(driver)
         self.driver = driver
         try:
-            self.userName = (By.XPATH, "//input[@name='username']")
-            self.passWord = (By.XPATH, "//input[@name='password']")
-            self.preDefinedUser = (By.CSS_SELECTOR, "div[class='orangehrm-login-form'] p:nth-child(1)")
-            self.preDefinedPassword = (By.CSS_SELECTOR, "div[class='orangehrm-login-form'] p:nth-child(2)")
-            self.loginBtn = (By.CSS_SELECTOR, "button[type='submit']")
+            self.userName = self.driver.find_element(By.XPATH, "//input[@name='username']")
+            self.passWord = self.driver.find_element(By.XPATH, "//input[@name='password']")
+            self.preDefinedUser = self.driver.find_element(By.CSS_SELECTOR, "div[class='orangehrm-login-form'] p:nth-child(1)")
+            self.preDefinedPassword = self.driver.find_element(By.CSS_SELECTOR, "div[class='orangehrm-login-form'] p:nth-child(2)")
+            self.loginBtn = self.driver.find_element(By.CSS_SELECTOR, "button[type='submit']")
         except Exception as e:
             print(f"Failed to initialize the Login page ---> {e}")
 
     def fetch_Credentials(self):
         dataDict = {}
         try:
-            tempUser = self.driver.find_element(*self.preDefinedUser).text
-            tempPass = self.driver.find_element(*self.preDefinedPassword).text
+            tempUser = self.preDefinedUser.text
+            tempPass = self.preDefinedPassword.text
 
             userParts = tempUser.split(":")
             passParts = tempPass.split(":")
@@ -37,9 +37,8 @@ class LoginPage(BrowserUtils):
         try:
             if "userName" not in data and "password" not in data :
                 raise ValueError("Missing username and password")
-            # print("data - ",data["userName"])
-            self.driver.find_element(*self.userName).send_keys(data["userName"])
-            self.driver.find_element(*self.passWord).send_keys(data["password"])
-            self.driver.find_element(*self.loginBtn).click()
+            self.userName.send_keys(data["userName"])
+            self.passWord.send_keys(data["password"])
+            self.loginBtn.click()
         except Exception as e:
             print(f"Failed to click login ---> {e}")
