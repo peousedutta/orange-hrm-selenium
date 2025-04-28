@@ -40,5 +40,7 @@ class LoginPage(BrowserUtils):
             self.userName.send_keys(data["userName"])
             self.passWord.send_keys(data["password"])
             self.loginBtn.click()
+            return True
         except Exception as e:
             print(f"Failed to click login ---> {e}")
+            return False

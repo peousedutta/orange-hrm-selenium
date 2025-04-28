@@ -11,7 +11,7 @@ class Test_001_login:
     def test_login(self, browserInstance):
         self.driver = browserInstance
         self.driver.get(self.URL)
-        
         self.loginPage = LoginPage(self.driver)
+        # assert self.loginPage.locate_Credentials()
         data = self.loginPage.fetch_Credentials()
-        self.loginPage.click_login(**data)
+        assert self.loginPage.click_login(**data), "Unable to Login"
