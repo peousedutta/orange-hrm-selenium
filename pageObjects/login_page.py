@@ -33,12 +33,10 @@ class LoginPage(BrowserUtils):
 
         return dataDict
     
-    def click_login(self, **data):
+    def click_login(self, username:str, password:str):
         try:
-            if "userName" not in data and "password" not in data :
-                raise ValueError("Missing username and password")
-            self.userName.send_keys(data["userName"])
-            self.passWord.send_keys(data["password"])
+            self.userName.send_keys(username)
+            self.passWord.send_keys(password)
             self.loginBtn.click()
             return True
         except Exception as e:
